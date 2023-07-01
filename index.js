@@ -3,23 +3,34 @@ let messageEL = document.getElementById("message-el")
 let sumEL = document.getElementById("sum-el")
 let cardEL = document.getElementById("card-el")
 let newCardBtn = document.getElementById("newCardBtn")
-let firstCard = getRandomCard()
-let secondCard = getRandomCard()
-let cards = [firstCard,secondCard]
-let sum = cards[0] + cards[1]
+
+let cards = []
+let sum = 0
 let hasBlackJack = false
-let isAlive = true
+let isAlive = false
 let message = ""
 // sumEL.textContent ="Sum: "+ sum
 // cardEL.textContent ="Card: "+ cards[0] + " " + cards[1]
 
 function getRandomCard(){
-    min = Math.ceil(1);
-    max = Math.floor(13); 
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    // min = Math.ceil(1);
+    // max = Math.floor(13); 
+    let randomNumber = Math.floor( Math.random()*13 ) + 1
+    if (randomNumber > 10) {
+        return 10
+    } else if (randomNumber === 1) {
+        return 11
+    } else {
+        return randomNumber
+    }
   
 }
 function startGame(){
+    isAlive=true
+    let firstCard = getRandomCard()
+    let secondCard = getRandomCard()
+    cards = [firstCard,secondCard]
+    sum = cards[0]+cards[1]
     renderGame()
 }
 function renderGame(){
@@ -43,9 +54,12 @@ function renderGame(){
 }
 
 function newCard(){
-    let card =getRandomCard()
-    sum+=card
-    cards.push(card)
-    console.log(cards)
-    renderGame()
+    if (isAlive  && hasBlackJack === false) {
+        let card =getRandomCard()
+        sum+=card
+        cards.push(card)
+        console.log(cards)
+        renderGame()
+    }
+    
 }

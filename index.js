@@ -3,7 +3,14 @@ let messageEL = document.getElementById("message-el")
 let sumEL = document.getElementById("sum-el")
 let cardEL = document.getElementById("card-el")
 let newCardBtn = document.getElementById("newCardBtn")
+let playerEL = document.getElementById("player-el")
 
+
+let player={
+    name:"Misk",
+    chips:170
+}
+playerEL.textContent = player.name + ": $"+player.chips
 let cards = []
 let sum = 0
 let hasBlackJack = false
